@@ -1,23 +1,46 @@
-<!DOCTYPE html>
-<html lang="en">
+<!-- Head -->
+<%- include('./shared/_head.ejs') %>
+<!-- // -->
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title><%=  app.title %></title>
-</head>
+<body id="body">
+  <!-- header -->
+  <%- include('./shared/_header') %>
+  <!-- // -->
 
-<body>
-  <header>
-    <nav>
-      <ul>
-        <li><a href="/about">about</a></li>
-      </ul>
-    </nav>
-  </header>
-  <h1>
-    <%= app.message %>
-  </h1>
+  <section class="home-section">
+    <div class="greeting">
+      <p><%= new Date().toLocaleDateString("fr-FR", {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    }) %></p>
+      <h1>
+        <% const hour = new Date().getHours() %>
+        <%=  hour < 12 ? "Bonjour" :  hour < 17 ? "Bonne après midi" : "Bonjour"  %>, John Doe!
+      </h1>
+    </div>
+
+    <div class="box__cards">
+      <div class="card__module" hx-get="/ledger" hx-target="#body" hx-push-url="true" hx-history="true" hx-select-ood="#bodyLedger *">
+        <img src="/public/assets/archive (3).png" alt="archive (3).png">
+        <h3>Dossiers</h3>
+        <p>Ledger description goes here spanning into two lines</p>
+      </div>
+      <div class="card__module" hx-get="/people" hx-target="#body" hx-push-url="true" hx-history="true" hx-select-ood="#bodyPeople *">
+        <img src="/public/assets/teamwork.png" alt="teamwork.png">
+        <h3>Personnels</h3>
+        <p>Teams description goes here spanning into two lines</p>
+      </div>
+      <div class="card__module" hx-get="/report" hx-target="#body" hx-push-url="true" hx-history="true" hx-select-ood="#bodyReport *">
+        <img src="/public/assets/report.png" alt="report.png">
+        <h3>Rapports</h3>
+        <p>Reports description goes here spanning into two lines</p>
+      </div>
+    </div>
+  </section>
+
+
 </body>
 
 </html>

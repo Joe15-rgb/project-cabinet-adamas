@@ -5,8 +5,11 @@ import { AvocatStatut } from 'App/types/enums';
 import { Sequelize } from 'sequelize';
 import appointmentModel from 'App/modules/Appointment/models/appointmentModel';
 import dossierModel from 'App/modules/Folders/model/dossierModel';
+import { SexeStatus } from '../../../types/enums';
 
 class Avocat extends Model<IAvocat> implements IAvocat {
+  public Profile?: string;
+  public Sexe!: SexeStatus;
   public AvocatID!: number;
   public Nom!: string;
   public Prenom!: string;
@@ -34,11 +37,15 @@ class Avocat extends Model<IAvocat> implements IAvocat {
       Barreau: { type: DataTypes.STRING, allowNull: true },
       Email: { type: DataTypes.STRING, unique: true, allowNull: false },
       Telephone: { type: DataTypes.STRING, allowNull: true },
-      Statut: { type: DataTypes.ENUM(...Object.values(AvocatStatut)), allowNull: false }
+      Statut: { type: DataTypes.ENUM(...Object.values(AvocatStatut)), allowNull: false },
+      Profile: { type: DataTypes.STRING, allowNull: false, defaultValue: "/public/assets/profile.png" },
+      Sexe: { type: DataTypes.ENUM(...Object.values(SexeStatus)), allowNull: true },
+
     }, {
       sequelize,
       modelName: 'Avocat',
       tableName: 'avocats',
+      paranoid: true,
 
     });
   }

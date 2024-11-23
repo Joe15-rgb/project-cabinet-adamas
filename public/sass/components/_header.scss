@@ -1,0 +1,38 @@
+@use "../mixins"as func;
+@use "../basic/font"as typo;
+
+.header {
+  @include func.flex-container-between(0);
+  width: 100%;
+  padding: 1rem;
+  --header-height: 100px;
+  height: var(--header-height);
+
+  .logo {}
+
+  .box__profile {
+    @include func.flex-container-between(10px);
+
+    &-thumbnail {
+      width: 40px;
+      height: 40px;
+      overflow: hidden;
+
+      &_img {
+        width: 40px;
+        height: 40px;
+      }
+    }
+
+    &-info {
+      b {
+        font-size: calc(14px);
+      }
+
+      span {
+        font-size: calc(12px);
+      }
+    }
+
+  }
+}

@@ -1,0 +1,19 @@
+@mixin flex-container() {
+  display: flex;
+  align-items: center;
+}
+
+/**
+ * $gap-value: px, rem
+ */
+@mixin flex-container-center($gap-value) {
+  @include flex-container();
+  justify-content: center;
+  gap: $gap-value;
+}
+
+
+@mixin flex-container-between($gap-value) {
+  @include flex-container-center($gap-value);
+  justify-content: space-between;
+}

@@ -1,0 +1,94 @@
+@use "_font.scss"as font;
+@use "_color.scss"as colors;
+@use "../mixins"as func;
+
+:root {
+  color-scheme: light dark;
+}
+
+body {
+  font-family: font.$type;
+  font-size: font.$size;
+  -webkit-font-smoothing: antialiased;
+  background-color: light-dark(colors.$light-theme-background, colors.$dark-theme-background);
+  color: light-dark(colors.$light-theme-text, colors.$dark-theme-text);
+
+}
+
+.home-section {
+  @include func.flex-container-center(15px);
+  flex-direction: column;
+  height: 50vh;
+  gap: 2rem;
+  padding: 1rem;
+  margin: 3rem auto;
+
+
+  .greeting {
+    text-align: center;
+    gap: 14px;
+    text-transform: capitalize;
+
+    p {
+      margin: 10px 0;
+      font-size: 12px;
+    }
+  }
+
+  .box__cards {
+    --max-width: 700px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    place-content: center;
+    gap: 1rem;
+    width: 100%;
+    max-width: var(--max-width);
+
+
+  }
+
+  .card__module {
+    border: 1px solid #ccc;
+    // background-color: #ffffff;
+    cursor: pointer;
+    padding: 1rem;
+    @include func.flex-container-center(15px);
+    flex-direction: column;
+    text-align: center;
+    height: 230px;
+    border-radius: 6px;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    -ms-border-radius: 6px;
+    -o-border-radius: 6px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
+
+    img {
+      width: 100px;
+      height: 100px;
+      // box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    }
+
+    p {
+      font-size: 12px;
+      color: #0505058f;
+      line-height: 1.5;
+    }
+  }
+}
+
+
+.main {
+  margin: 0 2rem;
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 15px;
+
+}
+
+.head-side {
+  margin: 0 2rem 1rem 2rem;
+  padding: 1rem;
+  @include func.flex-container-between(0);
+  border-bottom: 1px solid #ccc;
+}

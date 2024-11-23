@@ -1,0 +1,29 @@
+<table>
+  <thead>
+    <tr>
+      <th></th>
+      <th><input type="checkbox" name="" id=""></th>
+      <th>Noms</th>
+      <th>Email</th>
+      <th>Points</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% avocats.forEach(avocat => { %>
+    <tr>
+      <td>:::</td>
+      <td>
+        <img src="<%=avocat.Profile %>" alt="<%= avocat.Profile %>" width="30" height="30">
+      </td>
+      <td><%= avocat.Nom %> <%= avocat.Prenom %></td>
+      <td><%= avocat.Email %></td>
+      <td><%= 0 %></td>
+      <td>
+        <button type="button">Move</button>
+        <button type="button">Delete</button>
+      </td>
+    </tr>
+    <% }) %>
+  </tbody>
+</table>

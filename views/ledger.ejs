@@ -1,0 +1,36 @@
+<!-- Head -->
+<%- include('./shared/_head') %>
+<!-- // -->
+
+<body id="bodyLedger">
+  <!-- header -->
+  <%- include('./shared/_header') %>
+  <!-- // -->
+  <div class="head-side">
+    <div class="backlink">
+      <a href="/">&larr; Ledger</a>
+    </div>
+
+    <button class="btn" type="button">&plus; Add Item</button>
+  </div>
+  <main class="main">
+    <menu type="toolbar" class="menu-options">
+      <li class="item-option"><span>Unassigned</span></li>
+      <li class="item-option"><span>Need Review</span></li>
+      <li class="item-option"><span>Assigned</span></li>
+      <li class="item-option"><span>Complete</span></li>
+      <li class="item-option"><span>Points Settings</span></li>
+    </menu>
+    <section>
+      <div class="head">
+        <h3>Unassigned Items ()</h3>
+      </div>
+      <div class="content-ledger">
+        <h2>Aucun dossier</h2>
+      </div>
+    </section>
+  </main>
+
+</body>
+
+</html>

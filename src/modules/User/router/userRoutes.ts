@@ -18,16 +18,42 @@ const router = express.Router();
 router.get("/", IndexController.homeHandler);
 /**
  * @swagger
- * /about:
+ * /ledger:
  *   get:
- *     summary: Accéder à la page d'a propos
- *     description: Renvoie le contenu de la page a propos.
+ *     summary: Accéder à la page  dossier
+ *     description: Renvoie le contenu de la page dossier.
  *     responses:
  *       200:
- *         description: Page d'apropos renvoyée avec succès
+ *         description: Page dossier (ledger) envoyée avec succès
  *       500:
  *         description: Erreur interne du serveur
  */
-router.get("/about", IndexController.aboutHandler);
+router.get("/ledger", IndexController.ledgerHandler);
+/**
+ * @swagger
+ * /people:
+ *   get:
+ *     summary: Accéder à la page  personnel
+ *     description: Renvoie le contenu de la page personnel.
+ *     responses:
+ *       200:
+ *         description: Page personnel (people) renvoyée avec succès
+ *       500:
+ *         description: Erreur interne du serveur
+ */
+router.get("/people", IndexController.peopleHandler);
+/**
+ * @swagger
+ * /report:
+ *   get:
+ *     summary: Accéder à la page  rapport
+ *     description: Renvoie le contenu de la page rapport.
+ *     responses:
+ *       200:
+ *         description: Page rapport (report) renvoyée avec succès
+ *       500:
+ *         description: Erreur interne du serveur
+ */
+router.get("/report", IndexController.reportHandler);
 
 export default router;

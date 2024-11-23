@@ -1,5 +1,5 @@
 // src/interfaces/AvocatInterface.ts
-import { AvocatStatut } from 'App/types/enums';
+import { AvocatStatut, SexeStatus } from 'App/types/enums';
 
 export interface IAvocat {
   AvocatID?: number;
@@ -10,4 +10,6 @@ export interface IAvocat {
   Email: string;
   Telephone?: string;
   Statut: AvocatStatut;
+  Profile?: string;
+  Sexe: SexeStatus;
 }

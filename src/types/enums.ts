@@ -28,3 +28,8 @@ export enum AppointmentStatus {
   Validee = 'Validee',
   Refusee = 'Refusée',
 }
+
+export enum SexeStatus {
+  Homme = "Homme",
+  Femme = "Femme",
+}

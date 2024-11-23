@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <%- include('./shared/_head') %>
+</head>
+
+<body id="bodyPeople">
+  <!-- Header -->
+  <%- include('./shared/_header') %>
+
+  <!-- Page Content -->
+  <div class="head-side">
+    <nav aria-label="Navigation principale">
+      <div class="backlink">
+        <a href="/" aria-label="Retour à la liste des personnes">&larr; People</a>
+      </div>
+      <div class="box-buttons">
+        <button class="btn" type="button" aria-label="Créer une équipe">&plus; Créer une équipe</button>
+        <button class="btn show" type="button" aria-label="Inviter des personnes">&plus; Inviter des personnes</button>
+      </div>
+    </nav>
+  </div>
+
+  <main class="main">
+    <nav class="menu-options" role="toolbar" aria-label="Options">
+      <ul>
+        <li class="item-option"><button type="button">People</button></li>
+        <li class="item-option"><button type="button">Attorneys</button></li>
+        <li class="item-option"><button type="button">Paralegals</button></li>
+      </ul>
+    </nav>
+
+    <section>
+      <header class="head">
+        <h3>Sans équipe (0)</h3>
+      </header>
+      <div id="contentPeople" class="content-people" hx-get="/avocat/getAvocat" hx-trigger="load">
+        <!-- <h2>Aucun dossier disponible</h2> -->
+
+      </div>
+    </section>
+
+    <!-- Dialog -->
+    <dialog id="dialog" aria-labelledby="dialog-title" aria-hidden="true">
+      <div class="dialog-head">
+        <h3 id="dialog-title">Ajouter une personne</h3>
+        <button class="close" type="button" aria-label="Fermer la fenêtre">×</button>
+      </div>
+      <div class="dialog-main">
+        <form hx-post="/avocat/addAvocat" hx-encoding hx-target="#contentPeople">
+          <!-- Thumbnail -->
+          <div class="field img">
+            <img id="preview" src="" alt="" width="50" height="50">
+            <label for="thumbnail">Photo de profil</label>
+            <input type="file" name="thumbnail" id="thumbnail" accept="image/*">
+          </div>
+
+          <!-- Name Fields -->
+          <div class="fields">
+            <div class="field">
+              <label for="Nom">Nom</label>
+              <input type="text" name="Nom" id="Nom" placeholder="Entrez le nom" required>
+            </div>
+            <div class="field">
+              <label for="Prenom">Prénom</label>
+              <input type="text" name="Prenom" id="Prenom" placeholder="Entrez le prénom" required>
+            </div>
+          </div>
+
+          <div class="fields">
+            <!-- Specialty -->
+            <div class="field">
+              <label for="specialite">Spécialité</label>
+              <input type="text" name="Specialite" id="specialite" placeholder="Spécialité">
+            </div>
+
+            <!-- Barreau -->
+            <div class="field">
+              <label for="Barreau">Barreau</label>
+              <input type="text" name="Barreau" id="Barreau" placeholder="Barreau">
+            </div>
+          </div>
+
+          <div class="fields">
+            <!-- Contact -->
+            <div class="field">
+              <label for="Email">Email</label>
+              <input type="email" name="Email" id="Email" placeholder="Email" required>
+            </div>
+            <div class="field">
+              <label for="Telephone">Téléphone</label>
+              <input type="tel" name="Telephone" id="Telephone" placeholder="Téléphone" required>
+            </div>
+          </div>
+
+          <div class="fields">
+            <!-- Status -->
+            <div class="field">
+              <label for="Statut">Statut</label>
+              <select name="Statut" id="Statut">
+                <option value="Associe">Associé</option>
+                <option value="Stagiaire">Stagiaire</option>
+                <option value="Partenaire">Partenaire</option>
+              </select>
+            </div>
+
+            <!-- Gender -->
+            <div class="field">
+              <label for="Sexe">Sexe</label>
+              <select name="Sexe" id="Sexe">
+                <option value="Homme">Homme</option>
+                <option value="Femme">Femme</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Submit -->
+          <button type="submit" class="btn btn-primary">Ajouter maintenant</button>
+        </form>
+      </div>
+    </dialog>
+  </main>
+
+  <script src="/public/js/main.js"></script>
+</body>
+
+</html>

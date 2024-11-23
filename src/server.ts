@@ -18,6 +18,7 @@ import winston from "winston";
 import session from "express-session";
 import figlet from 'figlet';
 import chalk from 'chalk';
+import avocatRoute from "./modules/Avocat/routes/avocatRoute"
 
 
 // Gestion de __dirname en ESM
@@ -31,7 +32,7 @@ dotenv.config();
 // Limiteur de requêtes
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000,
-  max: 100,
+  max: 500, //100
   message: "Trop de requêtes effectuées depuis cette IP, veuillez réessayer plus tard.",
 });
 
@@ -78,7 +79,7 @@ export class Server {
           "default-src": ["'self'"],
           "script-src": ["'self'", "trustedscripts.com"], // Exemple : ajout de sources de scripts de confiance
           "object-src": ["'none'"],                      // Interdire les objets pour éviter les attaques XSS
-          "img-src": ["'self'", "data:", "images.com"],   // Exemples de directives CSP
+          "img-src": ["'self'", "data:", "blob:", "images.com"],   // Exemples de directives CSP
         },
       },
       referrerPolicy: { policy: "strict-origin-when-cross-origin" },
@@ -142,7 +143,8 @@ export class Server {
 
     // Vue et fichiers statiques
     this.app.set("view engine", "ejs");
-    this.app.use(express.static("public"));
+    this.app.use("/public", express.static("public"));
+    this.app.use("/uploads", express.static("uploads"));
   }
 
   // Déclaration des routes de l'application
@@ -161,11 +163,14 @@ export class Server {
           },
         ],
       },
-      apis: ["./src/modules/user/router/userRoutes.ts"],
+      apis: [
+        "./src/modules/user/router/userRoutes.ts",
+        "./src/modules/Avocat/routes/avocatRoute.ts"],
     });
 
     this.app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocs));
     this.app.use("/", indexRoute);
+    this.app.use("/avocat", avocatRoute)
   }
 
   // Gestionnaire d'erreurs global
@@ -195,9 +200,9 @@ export class Server {
             console.dir(err);
             return;
           }
-          // console.log(chalk.green(data));
           console.log(chalk.green(data));
-          console.log(chalk.green.bold(`Serveur en cours d'exécution sur http://localhost:${this.PORT}`));
+          console.log(chalk.green.bold(`Serveur en cours d'exécution sur:`));
+          console.log(chalk.underline.blue.bold(`http://localhost:${this.PORT}`));
         });
       });
     } catch (error) {

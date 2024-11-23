@@ -1,0 +1,13 @@
+.menu-options {
+  background-color: #c0c0c03e;
+  padding: 1rem;
+
+  .item-option {
+    padding: 1rem;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #808080d2;
+    }
+  }
+}
